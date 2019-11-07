@@ -2,7 +2,7 @@ const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 let _db;
 const mongoConnect = callback => {
-    MongoClient.connect('mongodb://rocko:nokiamini@cluster0-shard-00-00-iuhqo.mongodb.net:27017,cluster0-shard-00-01-iuhqo.mongodb.net:27017,cluster0-shard-00-02-iuhqo.mongodb.net:27017/shop?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority', {
+    MongoClient.connect('mongodb://username:password@cluster0-shard-00-00-iuhqo.mongodb.net:27017,cluster0-shard-00-01-iuhqo.mongodb.net:27017,cluster0-shard-00-02-iuhqo.mongodb.net:27017/shop?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
