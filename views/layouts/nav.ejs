@@ -1,0 +1,48 @@
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-header_nav">
+            <ul class="main-header_item-list">
+                <li class="main-header_item">
+                    <a class="<%= pageTitle=='Shop' ? 'active' : '' %>" href="/"> Shop</a>
+                </li>
+                <li class="main-header_item">
+                    <a class="<%= pageTitle=='Home' ? 'active' : '' %>" href="/products"> Products</a>
+                </li>
+                 <% if(isAuthenticated) { %>
+                    <% if(!isAdminLog) { %>
+                    <li class="main-header_item">
+                        <a class="<%= pageTitle=='Cart' ? 'active' : '' %>" href="/cart"> Cart </a>
+                    </li>
+                    <li class="main-header_item">
+                        <a class="<%= pageTitle=='Orders' ? 'active' : '' %>" href="/orders"> Orders </a>
+                    </li>
+                   <% } else { %>
+                    <li class="main-header_item">
+                        <a class="<%= pageTitle=='Add Product' ? 'active' : '' %>" href="/admin/addproduct"> Add Product</a>
+                    </li>
+                    <li class="main-header_item">
+                        <a class="<%= pageTitle=='Admin Product' ? 'active' : '' %>" href="/admin/adminproduct"> Admin Product</a>
+                    </li>
+                   <% } %>
+                <% } %> 
+            </ul>
+            <ul class="main-header_item-list">
+                <% if(!isAuthenticated) { %>
+                    <li class="main-header_item">
+                        <a class="<%= pageTitle=='Login' ? 'active' : '' %>" href="/login"> Login</a>
+                    </li>
+                     <li class="main-header_item">
+                         <a class="<%= pageTitle=='Sign Up' ? 'active' : '' %>" href="/signup"> Sign Up </a>
+                     </li>
+                <% } else { %>
+                    <form action="/logout" method="POST">
+                         <li class="main-header_item">
+                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                             <button class='logout-button' type="submit"> Logout </button>
+                         </li>
+                    </form>
+                  <% } %>
+            </ul>
+        </nav>
+    </header>

@@ -1,0 +1,28 @@
+<%- include('../layouts/head.ejs') %>
+<link rel="stylesheet" href="/style/orders.css">
+
+<%- include('../layouts/nav.ejs') %>
+
+<body>
+  
+   <main>
+      <% if (orders.length <= 0) { %>
+      <h1> No Prior Orders!</h1>
+      <% } else { %>
+      <ul class="orders">
+         <% orders.forEach(order => { %>
+         <li class="orders__item">
+            <h1>Order - # <%= order._id %> - <a href="/orders/<%= order._id%>"> Invoice </a> </h1>
+            <p> Dated - <%= order.date %> </p>
+            <ul class="orders__products">
+               <% order.products.forEach(p => { %>
+                  <li class="orders__products-item"> <%= p.product.title %> (<%= p.quantity %>) </li>
+               <% }); %>
+            </ul>
+             <p> Total - Rs <%= order.grandTotal %> </p>
+         </li>
+         <% }); %>
+      </ul>
+      <% } %>
+   </main>
+<%- include('../layouts/foot.ejs') %>

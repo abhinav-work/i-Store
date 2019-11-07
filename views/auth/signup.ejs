@@ -1,0 +1,31 @@
+<%- include('../layouts/head.ejs') %>
+<link rel="stylesheet" href="/style/forms.css">
+<link rel="stylesheet" href="/style/login.css">
+<%- include('../layouts/nav.ejs') %>
+<main>
+    <% if(errorMessage) { %>
+    <div class="user-message user-message--error"> <%= errorMessage %> </div>
+    <% } %>
+    <form class="login-form" action="/signup" method="POST">
+        <div class="div-form">
+            <label for="name"> Name </label>
+            <input type="text" name="name" id="name" value=<%= nameS %>>
+        </div>
+        <div class="div-form">
+            <label for="email"> Email </label>
+            <input class="<%= validationErr.find(e=> e.param==='email') ? 'invalid' : '' %>" type="email" name="email" id="email" value=<%= emailS %>>
+        </div>
+        <div class="div-form">
+            <label for="password"> Password </label>
+            <input class="<%= validationErr.find(e=> e.param==='password') ? 'invalid' : '' %>" type="password" name="password" id="password" value=<%= password1 %>>
+        </div>
+        <div class="div-form">
+            <label for="password"> Reconfirm Password </label>
+            <input class="<%= validationErr.find(e=> e.param==='confirmpassword') ? 'invalid' : '' %>" type="password" name="confirmpassword" id="password" value=<%= password2 %>>
+        </div>
+       <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+        <button class="add-button" type="submit" class="btn"> Sign Up </button>
+        </input>
+    </form>
+</main>
+<%- include('../layouts/foot.ejs') %>

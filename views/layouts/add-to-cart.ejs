@@ -1,0 +1,9 @@
+<% if(!isAdminLog) { %>
+<div class="card_actions">
+    <form action="/cart" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+        <button class="btn"> Add to Cart </button>
+        <input type='hidden' name="productID" value="<%= product._id%>">
+    </form>
+</div>
+<% } %>

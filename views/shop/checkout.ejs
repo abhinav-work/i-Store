@@ -1,0 +1,44 @@
+ <%- include('../layouts/head.ejs') %>
+ <link rel="stylesheet" href="/style/cart.css">
+ <link rel="stylesheet" href="/style/product.css">
+  <link rel="stylesheet" href="/style/stripe.css">
+
+
+ <%- include('../layouts/nav.ejs') %>
+ <main>
+     <% if(product.length>0) { %>
+     <ul class="cart_item-list">
+         <% product.forEach(p => { %>
+             <li class="cart_item">
+                 <h1> <%= p.productId.title %> </h1>
+                 <h2> Quantity: <%= p.quantity %> </h2>
+             </li>
+         <br>
+         <% }) %>
+     </ul>
+     <hr>
+     <div class="centered">
+        <p> Cart Total = Rs <%= cartValue %> </p>
+     </div>
+    <div class="centered">
+            <form action="/create-order" method="post" id="payment-form">
+            <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key='pk_test_QOi7iAhp5aalVRosonAmh7g400khh1vadS'
+                data-amount="<%= cartValue * 100 %>"
+                data-name='Your Order'
+                data-description="All the items you ordered"
+                data-image= "https://www.ebs.in/IPS/images/tabs_images/visa.png"
+                data-locale="auto"
+                data-currency="inr">
+            </script>  
+
+            </form>
+    </div>
+     <% } else { %>
+     <h1> No Products in your Cart </h1>
+     <% } %>
+ </main>
+ <%- include('../layouts/foot.ejs') %>
+
+ 

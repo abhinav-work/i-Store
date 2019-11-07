@@ -1,0 +1,36 @@
+<%- include('../layouts/head.ejs') %>
+<link rel="stylesheet" href="/style/product.css">
+<%- include('../layouts/nav.ejs') %>
+<main>
+    <% if(prods.length > 0) { %>
+        <% for (product of prods) { %>
+            <a href="/admin/edit-product/<%= product._id %>?edit=true" style="text-decoration: none; color:black;">
+                <div class="grid">
+                    <article class="card_product_item">
+                        <header class="card_header">
+                            <h1 class="product_title"> <%= product.title %> </h1>
+                        </header>
+                        <br>
+                        <div class="card_product_image">
+                            <img src="<%= product.imageURL %>" alt="Product Image">
+                        </div>
+                        <div class="card_product_content">
+                            <h2 class="product_price"> Rs. <%= product.price %> </h2>
+                            <p class="product_description"> <%= product.description %> </p>
+                        </div>
+            </a>            
+                        <div class="card_actions">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken%>">
+                                <input type='hidden' value="<%= product._id %>" name="productID">
+                                <button class="btn" type="button" onclick="deleteProduct(this)"> Delete </button>
+                        </div>
+                    </article>
+                </div>
+        <% } %>
+            <%- include('../layouts/pagination.ejs', {hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage, currentPage: currentPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage}) %>
+    <% } else { %>
+    <h1> No Products! <h1>
+            <% } %>
+</main>
+<%- include('../layouts/foot.ejs') %>
+<script type="text/javascript" src='/js/admin.js'> </script>
