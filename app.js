@@ -13,7 +13,7 @@ const isCustom = require('./Middleware/is_cutomer');
 //const mongoConnect = require('./utilities/database').mongoConnect;
 const User = require('./models/user');
 const mongoose  = require('mongoose');
-const MONGODB_URL = 'mongodb://rocko:nokiamini@cluster0-shard-00-00-iuhqo.mongodb.net:27017,cluster0-shard-00-01-iuhqo.mongodb.net:27017,cluster0-shard-00-02-iuhqo.mongodb.net:27017/shop?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
+const MONGODB_URL = 'mongodb://username:password@cluster0-shard-00-00-iuhqo.mongodb.net:27017,cluster0-shard-00-01-iuhqo.mongodb.net:27017,cluster0-shard-00-02-iuhqo.mongodb.net:27017/shop?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const csurf = require('csurf');
